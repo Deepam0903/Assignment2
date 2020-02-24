@@ -76,11 +76,11 @@ namespace Assignment2_CT_Spring2020
             //SolvePuzzle();*/
         }
 
-        private static void DisplayArray(int[] intersect2)
+        private static void DisplayArray(int[] a)
         {
-            for(int i =0; i <= intersect2.Length-1;i++)
+            for(int i =0; i <= a.Length-1;i++)
             {
-                Console.WriteLine(intersect2[i]);
+                Console.WriteLine(a[i]);
             }
         }
 
