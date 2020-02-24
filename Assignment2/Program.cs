@@ -43,9 +43,9 @@ namespace Assignment2_CT_Spring2020
            //Console.WriteLine("Question 5-Part 1");
             int[] nums1 = { 1, 2, 2, 1 };
             int[] nums2 = { 2, 2 };
-           /*int[] intersect1 = Intersect1(nums1, nums2);
+           int[] intersect1 = Intersect1(nums1, nums2);
             Console.WriteLine("Part 1- Intersection of two arrays is: ");
-            DisplayArray(intersect1);*/
+            DisplayArray(intersect1);
             Console.WriteLine("\n");
 
             Console.WriteLine("Question 5-Part 2");
@@ -66,7 +66,7 @@ namespace Assignment2_CT_Spring2020
              Console.WriteLine(priceProduct);
              Console.WriteLine();
 
-           /*  Console.WriteLine("Question 8");
+            Console.WriteLine("Question 8");
              string[] userDict = new string[] { "rocky", "usf", "hello", "apple" };
              string keyword = "hhllo";
              Console.WriteLine(DictSearch(userDict, keyword));
@@ -220,18 +220,39 @@ namespace Assignment2_CT_Spring2020
             }
         }
     
-   /* public static int[] Intersect1(int[] nums1, int[] nums2)
+    public static int[] Intersect1(int[] nums1, int[] nums2)
          {
              try
              {
-                 // Write your code here
+                 List<int> final = new List<int>();
+                Array.Sort(nums1);
+                Array.Sort(nums2);
+                
+                for (int i = 0, j = 0; (i < nums1.Length) && (j < nums2.Length) ; i++)
+                {
+                    if (nums1[i] < nums2[j]) continue;
+                    else if (nums1[i] > nums2[j])
+                    {
+                        j++;
+                        i--;
+                        continue;
+                    }
+                    else
+                    {
+                        final.Add(nums1[i]);
+                        j++;
+                    }
+                }
+
+                int[] ret_final = final.ToArray();
+                return ret_final;
              }
              catch
              {
                  throw;
              }
              return new int[] { };
-         }*/
+         }
          public static int[] Intersect2(int[] nums1, int[] nums2)
          {
             try
@@ -325,11 +346,32 @@ namespace Assignment2_CT_Spring2020
                
             }
 
-      /* public static bool DictSearch(string[] userDict, string keyword)
+      public static bool DictSearch(string[] userDict, string keyword)
         {
            try
            {
+          Console.WriteLine("======" + "USF DictSearch" + "============");
+                bool retFlag = false;
 
+                for (int i = 0; i < userDict.Length; i++)
+                {
+                    if (userDict[i] == keyword) break;
+
+                    if (userDict[i].Length != keyword.Length) continue;
+
+                    int mismatchnum = 0;
+
+                    for (int j = 0; j < keyword.Length; j++)
+                    {
+                        if (userDict[i][j] != keyword[j])
+                            mismatchnum += 1;
+
+                    }
+
+                    if (mismatchnum == 1) { retFlag = true; break; }
+                }
+
+                return (retFlag);
            
            }
 
@@ -339,7 +381,7 @@ namespace Assignment2_CT_Spring2020
         }
         return default;
     }
-        public static void SolvePuzzle()
+        /*public static void SolvePuzzle()
         {
             try
             {
